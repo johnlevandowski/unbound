@@ -34,7 +34,6 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Set up QEMU
-        # Required for building images for different architectures than the runner
         uses: docker/setup-qemu-action@v3
 
       - name: Set up Docker Buildx
@@ -50,10 +49,8 @@ jobs:
           build-args: |
             UNBOUND_VERSION=${{ env.UNBOUND_VERSION }}
             ALPINE_VERSION=${{ env.ALPINE_VERSION }}
-          # Tags the image as 'latest' and with the short commit SHA
           tags: |
             ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
-            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
-          # Enable layer caching for significantly faster subsequent builds
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.ALPINE_VERSION }}-${{ env.UNBOUND_VERSION }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
