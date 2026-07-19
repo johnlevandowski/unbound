@@ -37,4 +37,4 @@ docker exec -it unbound unbound-control stats_noreset
 docker logs unbound
 ~~~
 
-overide the unbound.conf by modifying override.conf file in etc-unbound directory in your project and uncomment the appropriate section from the compose.yaml
+Override the unbound.conf by modifying override.conf file in etc-unbound directory in your project and uncomment the appropriate section from the compose.yaml

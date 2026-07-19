@@ -9,7 +9,7 @@ RUN apk add --no-cache unbound=${UNBOUND_VERSION} openssl bind-tools nano && \
 
 COPY --chmod=755 scripts /usr/local/bin
 
-COPY --chmod=u=rwX,go=rX conf /etc/unbound
+COPY --chmod=644 conf /etc/unbound
 
 RUN chown -R unbound:unbound /etc/unbound
 
