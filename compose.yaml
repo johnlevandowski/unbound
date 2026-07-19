@@ -5,8 +5,6 @@ services:
     image: ghcr.io/johnlevandowski/unbound:latest
 #    volumes:
 #      - "./etc-unbound:/etc/unbound/unbound.conf.d/"
-    cap_add:
-       - NET_ADMIN
     ports:
        - 5335:5335/tcp
        - 5335:5335/udp
