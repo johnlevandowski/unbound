@@ -1,0 +1,19 @@
+services:
+  unbound:
+    container_name: unbound
+    hostname: unbound
+    image: ghcr.io/johnlevandowski/unbound:latest
+#    volumes:
+#      - "./etc-unbound:/etc/unbound/unbound.conf.d/"
+    cap_add:
+       - NET_ADMIN
+    ports:
+       - 5335:5335/tcp
+       - 5335:5335/udp
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "dig -p 5335 @127.0.0.1 www.google.com +short || exit 1"]
+      interval: 30s
+      timeout: 30s
+      retries: 3
+      start_period: 10s
