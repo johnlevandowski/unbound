@@ -1,11 +1,27 @@
 Unbound container for docker and podman
 =======================================
 
-## Use the sample compose.yaml to run the container
+
+## Podman
+
+```
+cp unbound.container $HOME/.config/containers/systemd/
+```
+
+```
+systemctl --user daemon-reload
+systemctl --user enable --now unbound.service
+```
+
+
+## Docker
 
 ~~~
-docker compose up -d
+docker compose -f compose.yaml up -d
 ~~~
+
+
+## Testing
 
 ~~~
 dig -p 5335 @127.0.0.1 johnlevandowski.com
